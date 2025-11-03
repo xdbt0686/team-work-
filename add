@@ -1,0 +1,6 @@
+def add():
+    project = input("Please write down your project:")
+    state = input("PLease write down the state:")
+    priority = input("the priority:(yes or no)")
+    dictionary = {"project":project,"state":state,"priority":priority}
+    tasks.append(dictionary)
