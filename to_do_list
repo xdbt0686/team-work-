@@ -25,7 +25,7 @@ def complete():
     for task in tasks:
         if task['project'] == project_want_complete:
             task['state'] == "completed"
-            print("Delete sucessfully!")
+            print("Complete sucessfully!")
         else:
             pass
 
