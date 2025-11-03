@@ -1,0 +1,11 @@
+def update_task_status(task_id, completed):
+    """Update the completion status of a task by its ID."""
+    for task in tasks:
+        if task["id"] == task_id:
+            task["completed"] = completed
+            save_tasks()
+            status_text = "✅ Completed" if completed else "❌ Not Completed"
+            print(f"Task [{task['title']}] status updated to: {status_text}")
+            return
+    print("Task ID not found.")
+
