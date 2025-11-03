@@ -1,4 +1,7 @@
 import os
+DATA_FILE = "tasks.txt"
+tasks = []  # global list to store all tasks
+
 
 def save_tasks():
     """Save all tasks to a text file."""
