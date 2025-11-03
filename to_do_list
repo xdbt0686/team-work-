@@ -1,0 +1,55 @@
+#全局变量
+tasks = []
+
+#显示菜单
+def menu():
+    print("1.view tasks")
+    print("2.add tasks")
+    print("3.complete tasks")
+    print("4.delete tasks")
+    print("5.quit")
+    
+def show():
+    for task in tasks:
+        print(f"project: {task['project']},state:{task['state']},priority:{task['priority']}")
+
+def add():
+    project = input("Please write down your project:")
+    state = input("PLease write down the state:(completed or incompleted)")
+    priority = input("the priority:(yes or no)")
+    dictionary = {"project":project,"state":state,"priority":priority}
+    tasks.append(dictionary)
+
+def complete():
+    project_want_complete = input("Please write down the project you want to mark as complete:")
+    for task in tasks:
+        if task['project'] == project_want_complete:
+            task['state'] == "completed"
+            print("Delete sucessfully!")
+        else:
+            pass
+
+def delete():
+    project_want_delete =input("Please write down the project you want to delete:")
+    for task in tasks:
+        if task['project'] == project_want_delete:
+            tasks.remove(task)
+            print("Delete sucessfully!")
+
+def main():
+    while True:
+        menu()
+        option = input("Pleae select(1-5):")
+        if option == "1":
+            show()
+        elif option == "2":
+            add()
+        elif option == "3":
+            complete()
+        elif option == "4":
+            delete()
+        elif option == "5":
+            print("Goodbye!")
+            break
+
+main()
