@@ -1,0 +1,44 @@
+import os
+DATA_FILE = "tasks.txt"
+tasks = []  # global list to store all tasks
+
+
+def save_tasks():
+    """Save all tasks to a text file."""
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        for task in tasks:
+            f.write(f"{task['id']},{task['title']},{task['completed']}\n")
+    print(" Tasks saved successfully!")
+
+
+def load_tasks():
+    """Load tasks from file if it exists."""
+    global tasks
+    tasks = []
+    if not os.path.exists(DATA_FILE):
+        print(" No task file found. A new one will be created automatically.")
+        return
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.strip().split(",")
+            if len(parts) == 3:
+                try:
+                    task = {
+                        "id": int(parts[0]),
+                        "title": parts[1],
+                        "completed": parts[2] == "True"
+                    }
+                    tasks.append(task)
+                except ValueError:
+                    continue
+    print(f"Loaded {len(tasks)} task(s).")
+
+def show_tasks():   #Display all tasks
+    if not tasks:
+        print("No tasks found.")
+        return
+    print("\n Current To-Do List:")
+    for task in tasks:
+        status = "✅ Completed" if task["completed"] else "❌ Not Completed"
+        print(f"{task['id']}. {task['title']} - {status}")
+    print()
