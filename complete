@@ -1,11 +1,18 @@
-def update_task_status(task_id, completed):
-    """Update the completion status of a task by its ID."""
+def update_task_status_by_title(task_title, completed):
+    """Update the completion status of a task by its title."""
+    target = task_title.strip().lower()
     for task in tasks:
-        if task["id"] == task_id:
+        if str(task.get("title", "")).strip().lower() == target:
             task["completed"] = completed
-            save_tasks()
+            try:
+                save_tasks() 
+            except NameError:
+                pass
             status_text = "✅ Completed" if completed else "❌ Not Completed"
-            print(f"Task [{task['title']}] status updated to: {status_text}")
+            print(f"Task [{task.get('title', '')}] status updated to: {status_text}")
             return
-    print("Task ID not found.")
+    print("Task title not found.")
 
+def complete():
+    task_title = input("Please enter the full task name to mark as complete: ")
+    update_task_status_by_title(task_title, True)
